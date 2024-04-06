@@ -15,13 +15,13 @@ interface ListProps {
 function List({ todos, remove, edit }: ListProps) {
   return (
     <div>
-      <table style={{ marginLeft: "550px", marginTop: "10px" }}>
+      <table style={{ marginLeft: "350px", marginTop: "10px" }}>
         {todos.map((todo, i) => (
-          <tr key={i} style={{ border: 'solid 1px darkcyan', padding: '10px' }}>
-            <td style={{ width: "100px", padding: '10px' }}>
+          <tr key={i} style={{ border: 'solid 1px #009EFF', padding: '10px' }}>
+            <td style={{ width: "500px", padding: '10px' }}>
               <span style={{ color: "white" }}>{todo.text}</span>
             </td>
-            <td style={{ border: 'solid 1px darkcyan', padding: '10px'}}>
+            <td style={{ border: 'solid 1px #009EFF', padding: '10px'}}>
               <Button
                 style={{
                   backgroundColor: "rgb(15 23 42 / var(--tw-bg-opacity)",
@@ -32,7 +32,7 @@ function List({ todos, remove, edit }: ListProps) {
                 edit
               </Button>
             </td>
-            <td style={{ border: 'solid 1px darkcyan',padding: '10px' }}>
+            <td style={{ border: 'solid 1px #009EFF',padding: '10px' }}>
               <Button
                 style={{
                   backgroundColor: "rgb(15 23 42 / var(--tw-bg-opacity)",
