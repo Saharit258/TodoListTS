@@ -1,5 +1,7 @@
-import React from 'react';
-import { Input, Button } from "antd";
+import React from "react";
+import { Form, Input, Button } from "antd";
+import { MdSaveAlt } from "react-icons/md";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 interface Todo {
   id: number;
@@ -10,22 +12,24 @@ interface InputpageProps {
   news: string;
   edits: Todo | null;
   setNews: React.Dispatch<React.SetStateAction<string>>;
-  submit: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  addTodos: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function Inputpage({ news, edits, setNews, submit }: InputpageProps) {
+function Inputpage({ news, edits, setNews, addTodos }: InputpageProps) {
   return (
-    <div>
+    <Form onFinish={addTodos}>
+      <Form.Item>
         <Input
           type="text"
           value={news}
           onChange={(e) => setNews(e.target.value)}
-          style={{ width: "500px", marginTop: "20px", marginLeft: "400px" }}
-        />
-        <Button onClick={submit} style={{ marginLeft: "10px" }}>
-          {edits ? "Save" : "Submit"}
+          className='w-[500px] mt-[20px] ml-[400px]'
+        />{" "}
+        <Button htmlType="submit">
+          {edits ? <MdSaveAlt /> : <AiFillPlusCircle />}
         </Button>
-      </div>
+      </Form.Item>
+    </Form>
   );
 }
 

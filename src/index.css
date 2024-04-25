@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:where(.css-dev-only-do-not-override-42nv3w).ant-table-wrapper .ant-table-tbody >tr >th, :where(.css-dev-only-do-not-override-42nv3w).ant-table-wrapper .ant-table-tbody >tr >td{
+    background-color: #0F172A;
+    border-bottom: 1px solid #0F172A;
+}

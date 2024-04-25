@@ -12,7 +12,7 @@ function App(): JSX.Element {
   const [news, setNews] = useState<string>("");
   const [edits, setEdits] = useState<Todo | null>(null);
 
-  const submit = () => {
+  const addTodos = () => {
     if (edits) {
       setTodos(
         todos.map((todo) =>
@@ -27,24 +27,21 @@ function App(): JSX.Element {
   };
 
   const remove = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+    setTodos(todos.filter((todo) => todo.id !== id))
+  }
 
   const edit = (id: number) => {
-    const editTodo = todos.find((todo) => todo.id === id);
-    if (editTodo) {
-      setEdits(editTodo);
-      setNews(editTodo.text);
+    const edittodo = todos.find((todo) => todo.id === id)
+    if(edittodo){
+      setEdits(edittodo)
+      setNews(edittodo.text)
     }
-  };
+  }
 
-  return (
-    <div className='bg-slate-900 h-[100vh] w-[100vw]'
-    >
-      <Inputpage news={news} edits={edits} setNews={setNews} submit={submit} />
-      <List todos={todos} remove={remove} edit={edit}/>
-    </div>
-  );
+  return <div className="bg-slate-900 h-[100vh] w-[100vw]">
+    <Inputpage news={news} edits={edits} setNews={setNews} addTodos={addTodos} />
+    <List todos={todos} remove={remove} edit={edit}/>
+  </div>;
 }
 
 export default App;

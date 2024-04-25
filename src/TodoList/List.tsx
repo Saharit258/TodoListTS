@@ -1,5 +1,7 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Table } from "antd";
+import { MdEdit } from "react-icons/md";
+import { CgPlayListRemove } from "react-icons/cg";
 
 interface Todo {
   id: number;
@@ -7,31 +9,44 @@ interface Todo {
 }
 
 interface ListProps {
-    todos: Todo[];
-    edit: (id: number) => void; 
-    remove: (id: number) => void; 
+  todos: Todo[];
+  edit: (id: number) => void;
+  remove: (id: number) => void;
 }
 
-function List({ todos, remove, edit }: ListProps) {
+const List: React.FC<ListProps> = ({ todos, remove, edit }) => {
+  const columns = [
+    {
+      title: "Todo",
+      dataIndex: "text",
+      key: "text",
+      width: "500px",
+      backgroundColor: "#0F172A",
+      render: (text: string) => <div className='text-ellipsis w-[500px]' style={{ color: '#ffffff'}}>{text}</div>,
+    },
+    {
+      title: "Action",
+      key: "action",
+      width: "200px",
+      render: (record: Todo) => (
+        <span className='w-[100px]'>
+          <Button onClick={() => edit(record.id)}><MdEdit /></Button>
+          <Button className='ml-3' onClick={() => remove(record.id)}><CgPlayListRemove /></Button>
+        </span>
+      ),
+    },
+  ];
+
   return (
     <div>
-      <table style={{ marginLeft: "550px", marginTop: "10px" }}>
-        {todos.map((todo, i) => (
-          <tr key={i}>
-            <td style={{ width: "100px" }}>
-              <span style={{ color: 'white'}}>{todo.text}</span>
-            </td>
-            <td>
-              <Button onClick={() => edit(todo.id)}>edit</Button>
-            </td>
-            <td>
-              <Button onClick={() => remove(todo.id)}>remove</Button>
-            </td>
-          </tr>
-        ))}
-      </table>
+      <Table
+        dataSource={todos}
+        columns={columns}
+        pagination={false}
+        className='w-[700px] ml-[400px]'
+      />
     </div>
   );
-}
+};
 
 export default List;
